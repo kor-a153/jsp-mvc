@@ -1,4 +1,4 @@
-package com.app.product.controller;
+package com.app.post.controller;
 
 import java.io.IOException;
 
@@ -8,21 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.app.Action;
 import com.app.Result;
-import com.app.dao.ProductDAO;
-import com.app.post.exception.PostNotFoundException;
+import com.app.dao.PostDAO;
 
-public class ProductUpdateController implements Action {
+public class PostDeleteOkController implements Action {
 
 	@Override
 	public Result excute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		Result result = new Result();
-		ProductDAO productDAO = new ProductDAO();
+		PostDAO postDAO = new PostDAO();
 		
 		Long id = Long.parseLong(req.getParameter("id"));
-		req.setAttribute("product", productDAO.select(id).orElseThrow(PostNotFoundException::new));
+		postDAO.delete(id);
 		
-//		포워드, 어디로
-		result.setPath("/update.jsp");
+//		어디로 어떻게
+		result.setPath(req.getContextPath() + "/list.post");
+		result.setRedirect(true);
 		
 		return result;
 	}

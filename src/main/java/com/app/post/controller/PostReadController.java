@@ -1,4 +1,4 @@
-package com.app.product.controller;
+package com.app.post.controller;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.app.Action;
 import com.app.Result;
-import com.app.dao.ProductDAO;
+import com.app.dao.PostDAO;
 import com.app.post.exception.PostNotFoundException;
-import com.app.vo.ProductVO;
+import com.app.vo.PostVO;
 
-public class ProductReadController implements Action {
+public class PostReadController implements Action {
 
 	@Override
 	public Result excute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		Result result = new Result();
-		ProductDAO productDAO = new ProductDAO();
+		PostDAO postDAO = new PostDAO();
 		
 		Long id = Long.parseLong(req.getParameter("id"));
-		Optional<ProductVO> foundProduct = productDAO.select(id);
+		Optional<PostVO> foundPost = postDAO.select(id);
 
 //		만약 유저가 없으면 예외 던짐
-		ProductVO product = foundProduct.orElseThrow(PostNotFoundException::new);
-		req.setAttribute("product", product);
+		PostVO post = foundPost.orElseThrow(PostNotFoundException::new);
+		req.setAttribute("post", post);
 		
 //		포워드
 //		어디로

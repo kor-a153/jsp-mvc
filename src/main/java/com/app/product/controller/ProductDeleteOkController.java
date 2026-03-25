@@ -1,7 +1,6 @@
 package com.app.product.controller;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.app.Action;
 import com.app.Result;
 import com.app.dao.ProductDAO;
-import com.app.post.exception.PostNotFoundException;
-import com.app.vo.ProductVO;
 
-public class ProductReadController implements Action {
+public class ProductDeleteOkController implements Action {
 
 	@Override
 	public Result excute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -21,15 +18,11 @@ public class ProductReadController implements Action {
 		ProductDAO productDAO = new ProductDAO();
 		
 		Long id = Long.parseLong(req.getParameter("id"));
-		Optional<ProductVO> foundProduct = productDAO.select(id);
-
-//		만약 유저가 없으면 예외 던짐
-		ProductVO product = foundProduct.orElseThrow(PostNotFoundException::new);
-		req.setAttribute("product", product);
+		productDAO.delete(id);
 		
-//		포워드
-//		어디로
-		result.setPath("/read.jsp");
+//		어디로 어떻게
+		result.setPath(req.getContextPath() + "/list.product");
+		result.setRedirect(true);
 		
 		return result;
 	}

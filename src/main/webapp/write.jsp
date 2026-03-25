@@ -4,23 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품등록페이지</title>
+<title>게시글 등록 페이지</title>
 </head>
 <body>
-	<form action = "/mvc/write-ok.product" method = "post">
+	<form action = "/mvc/write-ok.post" method = "post">
 		<div>
-			<span>상품명</span>
-			<input name = "productName" />
+			<span>게시글 제목</span>
+			<input name = "postTitle" />
 		</div>
 		<div>
-			<span>상품가격</span>
-			<input name = "productPrice" />
+			<span>게시글 내용</span>
+			<input name = "postContent" />
 		</div>
 		<div>
-			<span>상품재고</span>
-			<input name = "productStock" />
+			<span>작성 시간</span>
+			<input name = "postCreateAt" />
 		</div>
-	<button>상품 등록</button>
+	<button>게시글 등록</button>
 	</form>
 
 </body>

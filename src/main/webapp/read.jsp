@@ -1,3 +1,4 @@
+<%@page import="com.app.vo.PostVO"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.app.vo.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,32 +7,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 상세 보기</title>
+<title>게시글 상세보기</title>
 </head>
 <body>
-   <%
-      ProductVO product = (ProductVO)request.getAttribute("product");
-      System.out.println(product);
-   %>
-   <table border="1">
-      <tr>
-         <th>상품번호</th>
-         <th>상품명</th>
-         <th>상품가격</th>
-         <th>상품재고</th>
-      </tr>   
-      <tr>
-         <td><%=product.getId() %></td>
-         <td><%=product.getProductName() %></td>
-         <td><%=product.getProductPrice() %></td>
-         <td><%=product.getProductStock() %></td>
-      </tr>
-   </table>
-   
-   <a href="/mvc/update.product?id=<%=product.getId() %>">수정하기</a>   
-   <a href="/mvc/delete-ok.product?id=<%=product.getId() %>">삭제하기</a>   
-   
-   
+	<%
+		PostVO post = (PostVO)request.getAttribute("post");
+		System.out.println(post);
+	%>
+	<table border="1">
+		<tr>
+			<th>게시글 번호</th>
+			<th>게시글 제목</th>
+			<th>게시글 내용</th>
+			<th>작성 시간</th>
+		</tr>
+		<tr>
+			<td><%=post.getId() %></td>
+			<td><%=post.getPostTitle() %></td>
+			<td><%=post.getPostContent() %></td>
+			<td><%=post.getPostCreateAt() %></td>
+		</tr>
+	</table>
+	
+	<a href="/mvc/update.post?id=<%=post.getId() %>">수정하기</a>	
+	<a href="/mvc/delete-ok.post?id=<%=post.getId() %>">삭제하기</a>	
+	
+	
 </body>
 </html>
 
